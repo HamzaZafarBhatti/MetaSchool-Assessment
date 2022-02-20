@@ -23,7 +23,7 @@
             <div class="sidebar-user-material-body">
                 <div class="card-body text-center">
                     <a href="#">
-                        <img src="{{ auth()->user()->profile_photo_url }}"
+                        <img src="{{ auth()->user()->profile_photo_path ? asset('storage/'.auth()->user()->profile_photo_path) : auth()->user()->profile_photo_url }}"
                             class="img-fluid rounded-circle shadow-1 mb-3" width="80" height="80" alt="">
                     </a>
                     <h6 class="mb-0 text-white text-shadow-dark">{{ auth()->user()->name }}</h6>
