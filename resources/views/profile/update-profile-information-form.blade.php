@@ -65,6 +65,20 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+        <!-- Country -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="country_id" value="{{ __('Country') }}" />
+            <select name="country_id" id="country_id" wire:model.defer="state.country_id" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full">
+                <option value="">{{__('Select Country') }}</option>
+                @php
+                    $countries = \DB::table('countries')->get();
+                @endphp
+                @foreach ($countries as $item)
+                    <option value="{{ $item->id }}" {{ $item->id === auth()->user()->country_id ? 'selected' : '' }}>{{ $item->name }}</option>
+                @endforeach
+            </select>
+            <x-jet-input-error for="country_id" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">
